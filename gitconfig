@@ -1,0 +1,27 @@
+[user]
+	name = irokaru
+	email = karuta@nononotyaya.net
+
+[init]
+	defaultBranch = main
+
+[core]
+	editor = vim
+
+[push]
+	default = current
+
+[pull]
+	rebase = false
+
+[fetch]
+	prune = true
+
+[alias]
+	st = status
+	co = checkout
+	br = branch
+	ci = commit
+	unstage = reset HEAD --
+	last = log -1 HEAD
+	visual = log --graph --oneline --decorate --all

@@ -1,0 +1,13 @@
+# Zsh
+.zcompdump
+.zcompdump-*
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.vim/
+*.swp
+*.swo
+*~
