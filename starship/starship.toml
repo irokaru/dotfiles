@@ -1,1 +1,22 @@
 add_newline = false
+
+format = """
+$directory\
+$cmd_duration
+$character"""
+
+right_format = """
+$golang\
+$rust\
+$nodejs\
+$python\
+$ruby\
+$git_branch"""
+
+[git_branch]
+symbol = "\uf113"
+format = "[$symbol $branch]($style) "
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
