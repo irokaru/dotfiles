@@ -1,5 +1,12 @@
-zinit ice wait lucid atload'eval "$(gh completion -s zsh)"'
-zinit light zdharma-continuum/null
+local -a completion_cmds=(
+  'gh completion -s zsh'
+  'devbox completion zsh'
+)
+
+for cmd in "${completion_cmds[@]}"; do
+  zinit ice wait lucid atload"eval \"\$($cmd)\""
+  zinit light zdharma-continuum/null
+done
 
 if type brew &>/dev/null; then
   zinit ice wait lucid as"completion"
