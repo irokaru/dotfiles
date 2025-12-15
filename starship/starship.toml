@@ -1,22 +1,35 @@
 add_newline = false
 
-format = """
-$directory\
-$cmd_duration
-$character"""
+format = "$directory$fill$git_branch$git_status$cmd_duration\n$character"
 
-right_format = """
-$golang\
+right_format = """$golang\
 $rust\
 $nodejs\
 $python\
-$ruby\
-$git_branch"""
+$ruby"""
+
+[fill]
+symbol = " "
 
 [git_branch]
 symbol = "\uf113"
 format = "[$symbol $branch]($style) "
 
+[git_status]
+format = " [$all_status]($style)"
+style = "red"
+conflicted = "✖"
+ahead = "⇡"
+behind = "⇣"
+stashed = ""
+untracked = "?"
+staged = "+"
+modified = "!"
+renamed = "»"
+deleted = "✗"
+
 [character]
-success_symbol = "[❯](bold green)"
-error_symbol = "[❯](bold red)"
+format = "$symbol"
+success_symbol = "[❯](bold green) "
+error_symbol = "[❯](bold red) "
+vicmd_symbol = "[❯](bold yellow) "
