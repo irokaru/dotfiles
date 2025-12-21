@@ -1,6 +1,7 @@
 local -a completion_cmds=(
   'gh completion -s zsh'
   'devbox completion zsh'
+  'k9s completion zsh'
 )
 
 for cmd in "${completion_cmds[@]}"; do
