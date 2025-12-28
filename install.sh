@@ -6,7 +6,18 @@ CURRENT_DIR="$(
   pwd
 )"
 
-DIRS=("~/.config" "~/config/git")
+DIRS=("${HOME}/.config")
+LINKS=(
+  # zsh
+  "${CURRENT_DIR}/zsh/.zshrc:${HOME}/.zshrc"
+  "${CURRENT_DIR}/zsh:${HOME}/.config/zsh"
+  # starship
+  "${CURRENT_DIR}/starship/starship.toml:${HOME}/.config/starship.toml"
+  # git
+  "${CURRENT_DIR}/git:${HOME}/.config/git"
+  # nvim
+  "${CURRENT_DIR}/nvim:${HOME}/.config/nvim"
+)
 
 # install
 sudo apt update && sudo apt install -y \
@@ -24,11 +35,9 @@ for dir in ${DIRS[@]}; do
 done
 
 # Create symbolic links for configuration files
-ln -sfnT "${CURRENT_DIR}/zsh" ~/.config/zsh
-ln -sfnT "${CURRENT_DIR}/zsh/.zshrc" ~/.zshrc
-ln -sfnT "${CURRENT_DIR}/starship/starship.toml" ~/.config/starship.toml
-ln -sfnT "${CURRENT_DIR}/gitconfig" ~/.config/git/config
-ln -sfnT "${CURRENT_DIR}/nvim" ~/.config/nvim
+for link in "${LINKS[@]}"; do
+  ln -sfnT "${link%:*}" "${link#*:}"
+done
 
 # Install Homebrew and dependencies from Brewfile
 if ! command -v brew >/dev/null; then
