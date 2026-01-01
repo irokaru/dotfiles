@@ -6,7 +6,7 @@ CURRENT_DIR="$(
   pwd
 )"
 
-DIRS=("${HOME}/.config")
+DIRS=("${HOME}/.config" "${HOME}/.gnupg")
 LINKS=(
   # zsh
   "${CURRENT_DIR}/zsh/.zshrc:${HOME}/.zshrc"
@@ -15,6 +15,8 @@ LINKS=(
   "${CURRENT_DIR}/starship/starship.toml:${HOME}/.config/starship.toml"
   # git
   "${CURRENT_DIR}/git:${HOME}/.config/git"
+  # gpg-agent
+  "${CURRENT_DIR}/gpg-agent/gpg-agent-conf:${HOME}/.gnupg/gpg-agent-conf"
   # nvim
   "${CURRENT_DIR}/nvim:${HOME}/.config/nvim"
 )

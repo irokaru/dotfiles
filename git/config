@@ -26,3 +26,5 @@
   unstage = reset HEAD --
   last = log -1 HEAD
   visual = log --graph --oneline --decorate --all
+[commit]
+	gpgsign = true
