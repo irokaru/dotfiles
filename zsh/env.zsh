@@ -1,3 +1,15 @@
+# History configuration
+export HISTFILE="$HOME/.config/zsh/.zsh_history"
+export HISTSIZE=50000
+export SAVEHIST=50000
+
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_FIND_NO_DUPS
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_IGNORE_SPACE
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+
 # Homebrew
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
