@@ -17,6 +17,8 @@ LINKS=(
   "${CURRENT_DIR}/git:${HOME}/.config/git"
   # gpg-agent
   "${CURRENT_DIR}/gpg-agent/gpg-agent-conf:${HOME}/.gnupg/gpg-agent-conf"
+  # mise
+  "${CURRENT_DIR}/mise:${HOME}/.config/mise"
   # nvim
   "${CURRENT_DIR}/nvim:${HOME}/.config/nvim"
 )

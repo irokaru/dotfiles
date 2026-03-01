@@ -20,3 +20,8 @@ fi
 if [[ -z $GPG_TTY ]] && tty &>/dev/null; then
   export GPG_TTY=$(tty)
 fi
+
+# mise
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
+fi

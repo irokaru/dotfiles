@@ -1,5 +1,6 @@
 local -a completion_cmds=(
   'gh completion -s zsh'
+  'mise completion zsh'
   'devbox completion zsh'
   'docker completion zsh'
   'k9s completion zsh'
