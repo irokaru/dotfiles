@@ -33,36 +33,31 @@ sudo apt update && sudo apt install -y \
   ca-certificates &&
   sudo apt autoremove -y
 
-# Install Docker Engine (https://docs.docker.com/engine/install/ubuntu/)
-if ! command -v docker >/dev/null; then
-  echo "Installing Docker Engine..."
+# Install Podman (https://podman.io/docs/installation)
+if ! command -v podman >/dev/null; then
+  echo "Installing Podman..."
 
-  # Remove old versions
-  for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do 
+  # Remove any conflicting packages
+  for pkg in podman-docker; do 
     sudo apt remove -y $pkg 2>/dev/null || true
   done
 
-  # Add Docker's official GPG key
-  sudo install -m 0755 -d /etc/apt/keyrings
-  sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-  sudo chmod a+r /etc/apt/keyrings/docker.asc
-
-  # Add the repository to Apt sources
-  echo \
-    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-    $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-    sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  # Install Podman and dependencies
   sudo apt update
+  sudo apt install -y podman podman-compose crun slirp4netns fuse-overlayfs
 
-  # Install Docker Engine
-  sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+  # Setup rootless Podman
+  sudo usermod --add-subuids 10000-75535 $USER
+  sudo usermod --add-subgids 10000-75535 $USER
 
-  # Add user to docker group
-  sudo usermod -aG docker $USER
+  # Enable systemd socket for Podman (may require re-login)
+  systemctl --user enable podman.socket 2>/dev/null || echo "Note: systemd user session not available. Please run 'systemctl --user enable podman.socket' after login."
+  systemctl --user start podman.socket 2>/dev/null || true
+  loginctl enable-linger $USER 2>/dev/null || true
 
-  echo "Docker installed successfully. You may need to log out and back in for group changes to take effect."
+  echo "Podman installed successfully. You may need to log out and back in for the configuration to take effect."
 else
-  echo "Docker is already installed."
+  echo "Podman is already installed."
 fi
 
 # Create dirs

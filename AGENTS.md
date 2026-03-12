@@ -29,9 +29,10 @@ exec zsh
 
 The `install.sh` script performs:
 1. Updates system packages (apt on Linux)
-2. Creates symbolic links for configuration files
-3. Installs Homebrew if not present
-4. Installs all packages defined in Brewfile
+2. Installs Podman and podman-compose for container management
+3. Creates symbolic links for configuration files
+4. Installs Homebrew if not present
+5. Installs all packages defined in Brewfile
 
 ### Managing Brewfile
 
