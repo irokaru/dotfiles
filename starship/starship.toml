@@ -1,32 +1,25 @@
 add_newline = false
 
-format = "$directory$fill$git_branch$git_status$cmd_duration\n$character"
+format = """$directory$fill$git_branch$git_status $golang$rust$nodejs$bun$python$ruby$cmd_duration
+$character"""
 
-right_format = """$golang\
-$rust\
-$nodejs\
-$python\
-$ruby"""
+right_format = ""
 
 [fill]
 symbol = " "
 
+[python]
+symbol = "\ue235 "
+
+[bun]
+symbol = "\ue76f "
+
 [git_branch]
-symbol = "\uf113"
-format = "[$symbol $branch]($style) "
+symbol = "\uf113 "
+format = "[$symbol$branch]($style) "
 
 [git_status]
-format = " [$all_status]($style)"
-style = "red"
-conflicted = "✖"
-ahead = "⇡"
-behind = "⇣"
-stashed = ""
-untracked = "?"
-staged = "+"
-modified = "!"
-renamed = "»"
-deleted = "✗"
+format = "[$all_status]($style)"
 
 [character]
 format = "$symbol"
